@@ -25,7 +25,7 @@ The plugin targets the M7 8K only. Do not assume compatibility with the M7 1K, o
 Add the public repository with:
 
 ```bash
-omarchy plugin add https://github.com/danielmrdev/omarchy-keychron-m7.git
+omarchy plugin add https://github.com/danielmrdev/omarchy-keychron-mouse.git
 ```
 
 If Omarchy asks whether to enable it, choose **no** until you have reviewed the source under `~/.config/omarchy/plugins/daniel.keychron-m7/`. Then enable it in the right bar:

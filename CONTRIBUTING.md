@@ -29,7 +29,7 @@ The plugin's Apply action changes the shared DPI stage through the Ultra-Link re
 1. Update `manifest.json` version using semantic versioning.
 2. Add the user-visible changes and limitations to `CHANGELOG.md`.
 3. Run all local checks and inspect the final diff.
-4. Push changes to the public repository at `https://github.com/danielmrdev/omarchy-keychron-m7`.
+4. Push changes to the public repository at `https://github.com/danielmrdev/omarchy-keychron-mouse`.
 5. Keep the repository description concise, such as `Keychron M7 8K status and DPI control for Omarchy Linux`, with topics such as `omarchy`, `keychron`, and `linux`.
 6. Before marketplace submission, re-read the current Omarchy publishing guide and issue form. Confirm the required repository fields, category, tags, and checklist.
 7. Add an optional `preview.png` only after reviewing a clean, privacy-safe crop.
