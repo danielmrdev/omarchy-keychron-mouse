@@ -28,10 +28,10 @@ Add the public repository with:
 omarchy plugin add https://github.com/danielmrdev/omarchy-keychron-mouse.git
 ```
 
-If Omarchy asks whether to enable it, choose **no** until you have reviewed the source under `~/.config/omarchy/plugins/daniel.keychron-m7/`. Then enable it in the right bar:
+If Omarchy asks whether to enable it, choose **no** until you have reviewed the source under `~/.config/omarchy/plugins/danielmrdev.omarchy-keychron-mouse/`. Then enable it in the right bar:
 
 ```bash
-omarchy plugin enable daniel.keychron-m7 --section right
+omarchy plugin enable danielmrdev.omarchy-keychron-mouse --section right
 ```
 
 The manifest also sets `right` as the default bar section.
@@ -47,7 +47,7 @@ Status polling does not change mouse configuration. **Apply DPI** is an explicit
 ## Remove
 
 ```bash
-omarchy plugin remove daniel.keychron-m7
+omarchy plugin remove danielmrdev.omarchy-keychron-mouse
 ```
 
 This removes the installed plugin. It does not change the mouse's onboard settings.

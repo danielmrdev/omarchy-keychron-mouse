@@ -4,7 +4,7 @@ import qs.Ui
 
 Panel {
   id: root
-  moduleName: "daniel.keychron-m7"
+  moduleName: "danielmrdev.omarchy-keychron-mouse"
   manageIpc: false
 
   property var anchorItem: null

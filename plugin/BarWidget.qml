@@ -4,7 +4,7 @@ import qs.Ui
 
 BarWidget {
   id: root
-  moduleName: "daniel.keychron-m7"
+  moduleName: "danielmrdev.omarchy-keychron-mouse"
 
   readonly property var deviceService: bar && bar.shell && typeof bar.shell.serviceFor === "function"
     ? bar.shell.serviceFor(moduleName)

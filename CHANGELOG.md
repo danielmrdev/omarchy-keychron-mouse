@@ -6,6 +6,7 @@ Notable changes to this project are recorded here. The manifest version is autho
 
 ### Added
 
+- Permanent plugin ID: `danielmrdev.omarchy-keychron-mouse`.
 - Omarchy bar widget with M7 glyph, optional battery percentage, and charging indicator.
 - Startup status read and one-minute status refresh.
 - Settings panel with connection route, battery, DPI stages, polling rates, profile, and read-only button mappings.
