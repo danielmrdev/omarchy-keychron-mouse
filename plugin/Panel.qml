@@ -14,6 +14,8 @@ Panel {
   property int cursorIndex: 0
   property bool cursorActive: false
 
+  // Keep in sync with manifest.json.
+  readonly property string pluginVersion: "0.1.0"
   readonly property color foreground: Color.popups.text
   readonly property string fontFamily: bar ? bar.fontFamily : Style.font.family
   readonly property var snapshot: service ? service.snapshot : null
@@ -139,20 +141,72 @@ Panel {
         width: parent.width
         spacing: Style.space(10)
 
-        PanelHero {
-          title: "Keychron M7 8K"
-          meta: root.snapshot
-            ? (root.snapshot.transport === "USB (cable)" ? "M7 conectado por cable" : "Ultra-Link 8K · M7 enlazado")
-            : "Esperando lectura del M7"
-          foreground: root.foreground
-          fontFamily: root.fontFamily
-          iconComponent: Component {
+        Item {
+          id: hero
+          width: parent.width
+          height: Math.max(mouseGlyph.implicitHeight, heroLabels.implicitHeight)
+
+          Text {
+            id: mouseGlyph
+            textFormat: Text.PlainText
+            text: "󰍽"
+            color: root.foreground
+            font.family: root.fontFamily
+            font.pixelSize: Style.font.display
+            anchors.left: parent.left
+            anchors.verticalCenter: parent.verticalCenter
+          }
+
+          Column {
+            id: heroLabels
+            anchors.left: mouseGlyph.right
+            anchors.leftMargin: Style.space(14)
+            anchors.right: parent.right
+            anchors.verticalCenter: parent.verticalCenter
+            spacing: Style.space(2)
+
+            Item {
+              id: titleRow
+              implicitWidth: titleText.implicitWidth + Style.space(8) + versionText.implicitWidth
+              implicitHeight: Math.max(titleText.implicitHeight, versionText.implicitHeight)
+              width: implicitWidth
+              height: implicitHeight
+
+              Text {
+                id: titleText
+                textFormat: Text.PlainText
+                text: "Keychron M7 8K"
+                color: root.foreground
+                font.family: root.fontFamily
+                font.pixelSize: Style.font.title
+                font.bold: true
+                anchors.left: parent.left
+                anchors.verticalCenter: parent.verticalCenter
+              }
+              Text {
+                id: versionText
+                textFormat: Text.PlainText
+                text: "v" + root.pluginVersion
+                color: Qt.darker(root.foreground, 1.4)
+                font.family: root.fontFamily
+                font.pixelSize: Style.font.caption
+                anchors.left: titleText.right
+                anchors.leftMargin: Style.space(8)
+                anchors.verticalCenter: parent.verticalCenter
+              }
+            }
+
             Text {
               textFormat: Text.PlainText
-              text: "󰍽"
-              color: root.foreground
+              text: root.snapshot
+                ? (root.snapshot.transport === "USB (cable)" ? "M7 conectado por cable" : "Ultra-Link 8K · M7 enlazado").toUpperCase()
+                : "Esperando lectura del M7".toUpperCase()
+              color: Qt.darker(root.foreground, 1.4)
               font.family: root.fontFamily
-              font.pixelSize: Style.font.display
+              font.pixelSize: Style.font.caption
+              font.bold: true
+              font.letterSpacing: 1.2
+              elide: Text.ElideRight
             }
           }
         }
