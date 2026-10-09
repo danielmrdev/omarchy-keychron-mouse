@@ -1,0 +1,12 @@
+# Python-generated files
+__pycache__/
+*.py[cod]
+.venv/
+
+# Local investigation artifacts. These files are not part of the plugin release.
+/design/
+/research/
+/spike/
+
+# Desktop metadata
+.DS_Store
