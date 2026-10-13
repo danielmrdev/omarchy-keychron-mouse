@@ -558,6 +558,7 @@ def set_dpi(dpi: int) -> dict:
         if all(item["activeDpiStage"] == stage + 1 for item in decoded["connections"]):
             return {
                 "ok": True,
+                "resultCode": "dpiAlreadyActive",
                 "result": "DPI ya estaba activo; no se escribió nada",
                 "dpi": dpi,
                 "previousDpi": previous_dpi,
@@ -593,6 +594,7 @@ def set_dpi(dpi: int) -> dict:
                     pass
             return {
                 "ok": False,
+                "resultCode": "dpiUnconfirmed",
                 "result": "No se pudo confirmar el DPI solicitado; estado actual incierto",
                 "dpi": dpi,
                 "previousDpi": previous_dpi,
@@ -605,6 +607,7 @@ def set_dpi(dpi: int) -> dict:
 
         return {
             "ok": True,
+            "resultCode": "dpiApplied" if ack_error is None else "dpiAppliedNoAck",
             "result": "DPI aplicado y confirmado por dos lecturas" if ack_error is None
                 else "DPI confirmado por dos lecturas; ACK no recibido",
             "dpi": dpi,

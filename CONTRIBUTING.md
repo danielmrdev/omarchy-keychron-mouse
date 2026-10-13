@@ -4,6 +4,7 @@
 
 - Omarchy shell with the plugin API used by this project. Development has been verified on Omarchy `4.0.4`.
 - Python 3.10 or newer. The helper uses only the standard library.
+- Node.js with its built-in test runner for translation checks.
 
 ## Local checks
 
@@ -11,6 +12,7 @@ Run these commands from the repository root:
 
 ```bash
 python3 -m unittest discover -s tests -v
+node --test tests/*.test.mjs
 omarchy plugin validate .
 find plugin -type f -name '*.qml' -print0 \
   | xargs -0 qmllint -I "${OMARCHY_PATH:-/usr/share/omarchy}/shell"

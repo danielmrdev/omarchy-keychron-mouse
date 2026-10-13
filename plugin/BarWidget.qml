@@ -1,6 +1,8 @@
 import QtQuick
 import qs.Commons
 import qs.Ui
+import "i18n.js" as I18n
+import "widget-settings.js" as WidgetSettings
 
 BarWidget {
   id: root
@@ -13,6 +15,12 @@ BarWidget {
     ? deviceService.snapshot.status
     : null
   readonly property bool showBatteryInBar: setting("showBatteryInBar", true) === true
+  readonly property string uiLanguage: I18n.normalizeOverride(setting("uiLanguage", "system"))
+  readonly property string systemLocaleName: I18n.systemLocaleName()
+
+  function tr(key, replacements) {
+    return I18n.t(key, systemLocaleName, uiLanguage, replacements)
+  }
   readonly property bool batteryPercentAvailable: mouseStatus
     && typeof mouseStatus.batteryPercent === "number"
     && mouseStatus.batteryPercent >= 0
@@ -36,17 +44,23 @@ BarWidget {
   readonly property string barTooltip: {
     var text = "Keychron M7 8K"
     if (showBatteryInBar && batteryPercentAvailable) text += " · " + mouseStatus.batteryPercent + "%"
-    if (showBatteryInBar && batteryCharging) text += " · cargando"
+    if (showBatteryInBar && batteryCharging) text += " · " + tr("charging")
     return text
   }
 
-  function setShowBatteryInBar(enabled) {
-    var entry = { id: moduleName }
-    for (var key in settings) if (key !== "id") entry[key] = settings[key]
-    entry.showBatteryInBar = enabled === true
+  function persistSetting(key, value) {
+    var entry = WidgetSettings.updatedEntry(settings, moduleName, key, value)
     settings = entry
     if (bar && bar.shell && typeof bar.shell.updateEntryInline === "function")
       bar.shell.updateEntryInline(moduleName, entry)
+  }
+
+  function setShowBatteryInBar(enabled) {
+    persistSetting("showBatteryInBar", enabled === true)
+  }
+
+  function setUiLanguage(language) {
+    persistSetting("uiLanguage", I18n.normalizeOverride(language))
   }
 
   function injectPanel() {

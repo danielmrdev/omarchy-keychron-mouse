@@ -18,7 +18,8 @@
     "allowMultiple": false,
     "defaultSection": "right",
     "defaults": {
-      "showBatteryInBar": true
+      "showBatteryInBar": true,
+      "uiLanguage": "system"
     },
     "schema": [
       {
@@ -26,6 +27,12 @@
         "type": "boolean",
         "label": "Show battery in bar",
         "description": "Show the battery percentage and a charging glyph beside the mouse icon."
+      },
+      {
+        "key": "uiLanguage",
+        "type": "string",
+        "label": "Interface language",
+        "description": "Choose System, English, or Spanish in About."
       }
     ]
   }

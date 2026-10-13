@@ -396,6 +396,7 @@ class DpiSmokeSafetyTests(unittest.TestCase):
             result = set_dpi(800)
 
         self.assertTrue(result["ok"])
+        self.assertEqual(result["resultCode"], "dpiApplied")
         self.assertEqual(result["activeDpi"], [800, 800, 800])
         self.assertEqual(result["pollingHz"], [1000, 1000, 125])
         self.assertEqual(query.call_count, 3)
@@ -411,6 +412,7 @@ class DpiSmokeSafetyTests(unittest.TestCase):
             result = set_dpi(800)
 
         self.assertTrue(result["ok"])
+        self.assertEqual(result["resultCode"], "dpiAlreadyActive")
         self.assertFalse(result["writeSent"])
         query.assert_called_once()
         write.assert_not_called()
@@ -424,6 +426,7 @@ class DpiSmokeSafetyTests(unittest.TestCase):
             result = set_dpi(800)
 
         self.assertTrue(result["ok"])
+        self.assertEqual(result["resultCode"], "dpiAppliedNoAck")
         self.assertIn("ACK no recibido", result["result"])
         self.assertEqual(result["ackError"], "ACK timeout")
         self.assertEqual(query.call_count, 3)
@@ -438,6 +441,7 @@ class DpiSmokeSafetyTests(unittest.TestCase):
             result = set_dpi(800)
 
         self.assertFalse(result["ok"])
+        self.assertEqual(result["resultCode"], "dpiUnconfirmed")
         self.assertIn("estado actual incierto", result["result"])
         self.assertEqual(query.call_count, 2)
         write.assert_called_once()

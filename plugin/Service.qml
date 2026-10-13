@@ -13,6 +13,7 @@ Item {
   property var snapshot: null
   property string errorText: ""
   property string resultText: ""
+  property string resultCode: ""
   property string _operation: ""
   property bool _preserveMessages: false
   property bool _retainSnapshot: false
@@ -30,6 +31,7 @@ Item {
     if (!_preserveMessages) {
       errorText = ""
       resultText = ""
+      resultCode = ""
     }
     if (!_retainSnapshot) snapshot = null
     helper.command = ["python3", helperPath, "status"]
@@ -45,6 +47,7 @@ Item {
     _preserveMessages = false
     errorText = ""
     resultText = ""
+    resultCode = ""
     helper.command = ["python3", helperPath, "set-dpi", "--dpi", String(dpi), "--confirm"]
     helper.running = true
     return true
@@ -118,6 +121,7 @@ Item {
 
       if (operation === "set-dpi") {
         if (data && typeof data.result === "string") root.resultText = data.result
+        if (data && typeof data.resultCode === "string") root.resultCode = data.resultCode
         if (exitCode !== 0 || !data || data.ok !== true) {
           root.errorText = String((data && (data.error || data.result)) || helperErr.text || "No se pudo confirmar el cambio de DPI.").trim()
         }

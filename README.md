@@ -9,6 +9,7 @@ Omarchy bar widget and settings panel for the Keychron M7 8K. Current version: *
 - Refresh status at startup and once per minute.
 - Apply a reported DPI stage through the Ultra-Link 2.4 GHz receiver.
 - Display button mappings as read-only; button remapping is not implemented.
+- Choose System, English, or Español in About; interface supports English and Spanish.
 
 ## Supported hardware
 
@@ -58,6 +59,7 @@ Run from the repository root:
 
 ```bash
 python3 -m unittest discover -s tests -v
+node --test tests/*.test.mjs
 omarchy plugin validate .
 find plugin -type f -name '*.qml' -print0 \
   | xargs -0 qmllint -I "${OMARCHY_PATH:-/usr/share/omarchy}/shell"
