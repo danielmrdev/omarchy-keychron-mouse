@@ -203,7 +203,6 @@ Panel {
         id: body
         width: parent.width
         sourceComponent: root.currentPage === "about" ? aboutPageComponent : mousePageComponent
-        implicitHeight: item ? item.implicitHeight : 0
       }
     }
 
