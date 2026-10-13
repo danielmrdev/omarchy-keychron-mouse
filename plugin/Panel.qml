@@ -204,7 +204,6 @@ Panel {
         width: parent.width
         sourceComponent: root.currentPage === "about" ? aboutPageComponent : mousePageComponent
       }
-    }
 
     Component {
       id: mousePageComponent
@@ -728,6 +727,7 @@ Panel {
           width: parent.width
         }
       }
+    }
     }
   }
 }
