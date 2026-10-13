@@ -80,13 +80,18 @@ BarWidget {
     if (panelLoader.item) panelLoader.item.toggle()
   }
 
+  readonly property real horizontalMargin: Style.spaceReal(8.5)
+
   implicitWidth: vertical
     ? (bar ? bar.barSize : Style.bar.sizeVertical)
-    : barLabel.implicitWidth
+    : Math.max(
+        Style.bar.iconSlot,
+        barLabel.implicitWidth + (batteryLabelVisible ? 2 * horizontalMargin : 0)
+      )
   implicitHeight: vertical
     ? Math.max(Style.bar.iconSlot, barLabel.implicitHeight)
     : (bar ? bar.barSize : Style.bar.sizeHorizontal)
-  readonly property real openPanelIndicatorWidth: implicitWidth
+  readonly property real openPanelIndicatorWidth: barLabel.implicitWidth
   readonly property real openPanelIndicatorHeight: implicitHeight
 
   onBarChanged: Qt.callLater(injectPanel)
